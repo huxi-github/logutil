@@ -8,6 +8,7 @@
 
 
 #include <iostream>
+#include <string.h>
 #include "Logger4.h"
 #include "define.h"
 
@@ -35,6 +36,36 @@ void Logger4::LogMsgE(LOGTYPE level,string msg){
     
 }
 
+void Logger4::LogMsgE(LOGTYPE level,const char *  format,...){
+    
+    tm *sysTime = NULL;
+    time_t t = time(NULL);
+    sysTime = localtime(&t);
+    char tmp[1024] = { 0 };  //栈上分配的内存1024 bytes
+    sprintf(tmp,"[Time: %02d-%02d-%02d %02d:%02d:%02d]",
+            sysTime->tm_year,
+            sysTime->tm_mon,
+            sysTime->tm_mday,
+            sysTime->tm_hour,
+            sysTime->tm_min,
+            sysTime->tm_sec);
+    string timeStamp(tmp);
+    
+    string eLevel=getLevelSymbol(level);
+    
+    string msginfo_tem=timeStamp+eLevel;
+    memset(tmp, 0, sizeof(tmp));
+    
+    va_list var_point;
+    va_start(var_point, format);
+    vsnprintf(tmp, sizeof(tmp)-1, format, var_point);
+    va_end(var_point);
+    
+    LogMsg(tmp);
+    LogMsg("\n");
+    
+}
+
 void Logger4::LogMsg(string msg){
     std::cout<<msg;    
     const char *logpath="/Users/huxi/Downloads/log.txt";
@@ -49,6 +80,19 @@ void Logger4::LogMsg(string msg){
     fclose(flog);
 }
 
+void Logger4::LogMsg(char* msg){
+    puts(msg);
+    const char *logpath="/Users/huxi/Downloads/log.txt";
+    
+    FILE *flog=fopen(logpath, "a+");//"w+ 会覆盖老文件);
+    if(flog==NULL){
+        cout<<"日志文件打开失败";
+        return ;
+    }
+    const char *char_msg=msg;
+    fwrite(char_msg, sizeof(char), strlen(char_msg), flog);
+    fclose(flog);
+}
 
 string Logger4::getLevelSymbol(LOGTYPE level){
     string levelStr;//栈上分配
@@ -65,7 +109,5 @@ string Logger4::getLevelSymbol(LOGTYPE level){
         default:
             break;
     }
-    
     return levelStr;
-    
 }

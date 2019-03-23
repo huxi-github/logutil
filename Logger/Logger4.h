@@ -24,10 +24,11 @@ class Logger4
 public:
  
     static void LogMsgE(LOGTYPE level,string msg);
+    static void LogMsgE(LOGTYPE level,const char *formate,...);
     
-protected:
 private:
     static void LogMsg(string msg);
+    static void LogMsg(char * msg);
     static string getLevelSymbol(LOGTYPE level);
 };
 
