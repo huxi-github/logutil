@@ -12,7 +12,7 @@
 #include "define.h"
 
 
-void Logger4::LogMsgERROR(string msg){
+void Logger4::LogMsgE(LOGTYPE level,string msg){
     
     tm *sysTime = NULL;
     time_t t = time(NULL);
@@ -26,29 +26,13 @@ void Logger4::LogMsgERROR(string msg){
             sysTime->tm_min,
             sysTime->tm_sec);
     string timeStamp(tmp);
-    string msginfo=timeStamp+"[ERROR]"+msg;
+    
+    string eLevel=getLevelSymbol(level);
+    
+    string msginfo=timeStamp+eLevel+msg;
     LogMsg(msginfo);
     LogMsg("\n");
     
-}
-
-void Logger4::LogMsgINFO(string msg){
-    
-    tm *sysTime = NULL;
-    time_t t = time(NULL);
-    sysTime = localtime(&t);
-    char tmp[1024] = { 0 };  //栈上分配的内存1024 bytes
-    sprintf(tmp,"[Time: %02d-%02d-%02d %02d:%02d:%02d]",
-            sysTime->tm_year,
-            sysTime->tm_mon,
-            sysTime->tm_mday,
-            sysTime->tm_hour,
-            sysTime->tm_min,
-            sysTime->tm_sec);
-    string timeStamp(tmp);
-    string msginfo=timeStamp+"[INFO]"+msg;
-    LogMsg(msginfo);
-    LogMsg("\n");
 }
 
 void Logger4::LogMsg(string msg){
@@ -63,4 +47,25 @@ void Logger4::LogMsg(string msg){
     const char *char_msg=msg.c_str();
     fwrite(char_msg, sizeof(char), strlen(char_msg), flog);
     fclose(flog);
+}
+
+
+string Logger4::getLevelSymbol(LOGTYPE level){
+    string levelStr;//栈上分配
+    switch (level) {
+        case LERROR:
+            levelStr="[E]";
+            break;
+        case LINFO:
+            levelStr="[I]";
+            break;
+        case LDEBUG:
+           levelStr="[D]";
+            break;
+        default:
+            break;
+    }
+    
+    return levelStr;
+    
 }

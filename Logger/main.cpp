@@ -10,8 +10,12 @@
 #include "Logger4.h"
 
 int main(int argc, const char * argv[]) {
-        Logger4::LogMsgINFO("a info msg");
+//        Logger4::LogMsgINFO("a info msg");
+//
+//        Logger4::LogMsgERROR("a error msg");
     
-        Logger4::LogMsgERROR("a error msg");
+            Logger4::LogMsgE(LERROR,"a info msg");
+    
+            Logger4::LogMsgE(LINFO,"a error msg");
     return 0;
 }

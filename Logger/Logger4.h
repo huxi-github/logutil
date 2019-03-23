@@ -23,12 +23,12 @@ class Logger4
 {
 public:
  
-    static void LogMsgERROR(string msg);
-    static void LogMsgINFO(string msg);
+    static void LogMsgE(LOGTYPE level,string msg);
     
 protected:
 private:
     static void LogMsg(string msg);
+    static string getLevelSymbol(LOGTYPE level);
 };
 
 #endif /* Logger4_hpp */
