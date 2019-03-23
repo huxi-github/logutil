@@ -8,19 +8,9 @@
 
 
 #include <iostream>
-#include <stdio.h>
-
 #include "Logger4.h"
 #include "define.h"
-//Logger4::Logger4()
-//{
-//
-//}
-//
-//Logger4::~Logger4()
-//{
-//
-//}
+
 
 void Logger4::LogMsgERROR(string msg){
     
@@ -62,17 +52,15 @@ void Logger4::LogMsgINFO(string msg){
 }
 
 void Logger4::LogMsg(string msg){
-    std::cout<<msg;
-    
+    std::cout<<msg;    
     const char *logpath="/Users/huxi/Downloads/log.txt";
     
     FILE *flog=fopen(logpath, "a+");//"w+ 会覆盖老文件);
-    if(!flog){
+    if(flog==NULL){
         cout<<"日志文件打开失败";
         return ;
     }
     const char *char_msg=msg.c_str();
     fwrite(char_msg, sizeof(char), strlen(char_msg), flog);
     fclose(flog);
-    return ;
 }
