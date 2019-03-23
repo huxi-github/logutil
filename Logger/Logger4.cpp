@@ -28,18 +28,17 @@ void Logger4::LogMsgERROR(string msg){
     time_t t = time(NULL);
     sysTime = localtime(&t);
     char tmp[1024] = { 0 };  //栈上分配的内存1024 bytes
-    //    char tmp ;
-    sprintf(tmp,"[Time: %02d-%02d-%02d %02d:%02d:%02d][ERROR]",
+    sprintf(tmp,"[Time: %02d-%02d-%02d %02d:%02d:%02d]",
             sysTime->tm_year,
             sysTime->tm_mon,
             sysTime->tm_mday,
             sysTime->tm_hour,
             sysTime->tm_min,
             sysTime->tm_sec);
-    string msgTimeStamp(tmp);
-    string msginfo=msgTimeStamp+msg;
+    string timeStamp(tmp);
+    string msginfo=timeStamp+"[ERROR]"+msg;
     LogMsg(LINFO, msginfo);
-    
+    LogMsg(LINFO, "\n");
     
 }
 
@@ -49,21 +48,21 @@ void Logger4::LogMsgINFO(string msg){
     time_t t = time(NULL);
     sysTime = localtime(&t);
     char tmp[1024] = { 0 };  //栈上分配的内存1024 bytes
-    sprintf(tmp,"[Time: %02d-%02d-%02d %02d:%02d:%02d][INFO]",
+    sprintf(tmp,"[Time: %02d-%02d-%02d %02d:%02d:%02d]",
             sysTime->tm_year,
             sysTime->tm_mon,
             sysTime->tm_mday,
             sysTime->tm_hour,
             sysTime->tm_min,
             sysTime->tm_sec);
-    string msgTimeStamp(tmp);
-    string msginfo=msgTimeStamp+msg;
+    string timeStamp(tmp);
+    string msginfo=timeStamp+"[INFO]"+msg;
     LogMsg(LINFO, msginfo);
-    
+    LogMsg(LINFO, "\n");
 }
 
 int Logger4::LogMsg(LOGTYPE level ,string msg){
-    std::cout<<msg<<endl;
+    std::cout<<msg;
     
     const char *logpath="/Users/huxi/Downloads/log.txt";
     
@@ -72,9 +71,7 @@ int Logger4::LogMsg(LOGTYPE level ,string msg){
         cout<<"日志文件打开失败";
         return FILE_OPEN_FAILED;
     }
-    const char *char_msg=(msg+"\n").c_str();
-//    int size=sizeof(char_msg);//返回的是指针地址的大小8btyes
-//    fwrite(char_msg, sizeof(char_msg), 1, flog);
+      const char *char_msg=msg.c_str();
     fwrite(char_msg, sizeof(char), strlen(char_msg), flog);
     fclose(flog);
     return FILE_LOG_WRITE_OK;
