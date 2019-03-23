@@ -28,7 +28,7 @@ public:
     
 protected:
 private:
-    static int LogMsg(LOGTYPE level ,string msg);
+    static void LogMsg(string msg);
 };
 
 #endif /* Logger4_hpp */

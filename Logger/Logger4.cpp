@@ -37,8 +37,8 @@ void Logger4::LogMsgERROR(string msg){
             sysTime->tm_sec);
     string timeStamp(tmp);
     string msginfo=timeStamp+"[ERROR]"+msg;
-    LogMsg(LINFO, msginfo);
-    LogMsg(LINFO, "\n");
+    LogMsg(msginfo);
+    LogMsg("\n");
     
 }
 
@@ -57,11 +57,11 @@ void Logger4::LogMsgINFO(string msg){
             sysTime->tm_sec);
     string timeStamp(tmp);
     string msginfo=timeStamp+"[INFO]"+msg;
-    LogMsg(LINFO, msginfo);
-    LogMsg(LINFO, "\n");
+    LogMsg(msginfo);
+    LogMsg("\n");
 }
 
-int Logger4::LogMsg(LOGTYPE level ,string msg){
+void Logger4::LogMsg(string msg){
     std::cout<<msg;
     
     const char *logpath="/Users/huxi/Downloads/log.txt";
@@ -69,10 +69,10 @@ int Logger4::LogMsg(LOGTYPE level ,string msg){
     FILE *flog=fopen(logpath, "a+");//"w+ 会覆盖老文件);
     if(!flog){
         cout<<"日志文件打开失败";
-        return FILE_OPEN_FAILED;
+        return ;
     }
-      const char *char_msg=msg.c_str();
+    const char *char_msg=msg.c_str();
     fwrite(char_msg, sizeof(char), strlen(char_msg), flog);
     fclose(flog);
-    return FILE_LOG_WRITE_OK;
+    return ;
 }
