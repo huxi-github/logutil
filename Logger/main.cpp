@@ -7,9 +7,11 @@
 //
 
 #include <iostream>
+#include "Logger4.h"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+        Logger4::LogMsgINFO("a info msg");
+    
+        Logger4::LogMsgERROR("a error msg");
     return 0;
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DD585DA8224519E200F4E7DF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD585DA7224519E200F4E7DF /* main.cpp */; };
+		DD585DB92245208D00F4E7DF /* Logger4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD585DB82245208D00F4E7DF /* Logger4.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +24,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DD4423DE2245C73200E82CE6 /* define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		DD585DA4224519E200F4E7DF /* Logger */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Logger; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD585DA7224519E200F4E7DF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DD585DB72245208D00F4E7DF /* Logger4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger4.h; sourceTree = "<group>"; };
+		DD585DB82245208D00F4E7DF /* Logger4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Logger4.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,9 @@
 			isa = PBXGroup;
 			children = (
 				DD585DA7224519E200F4E7DF /* main.cpp */,
+				DD585DB72245208D00F4E7DF /* Logger4.h */,
+				DD585DB82245208D00F4E7DF /* Logger4.cpp */,
+				DD4423DE2245C73200E82CE6 /* define.h */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -118,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD585DB92245208D00F4E7DF /* Logger4.cpp in Sources */,
 				DD585DA8224519E200F4E7DF /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
