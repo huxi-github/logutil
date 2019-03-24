@@ -18,7 +18,8 @@ void Logger4::LogMsgE(LOGTYPE level,string msg){
     tm *sysTime = NULL;
     time_t t = time(NULL);
     sysTime = localtime(&t);
-    char tmp[1024] = { 0 };  //栈上分配的内存1024 bytes
+    char tmp[1024];  //栈上分配的内存1024 bytes
+    memset(tmp, 0, 1024);
     sprintf(tmp,"[Time: %02d-%02d-%02d %02d:%02d:%02d]",
             sysTime->tm_year,
             sysTime->tm_mon,
@@ -53,14 +54,12 @@ void Logger4::LogMsgE(LOGTYPE level,const char *  format,...){
     
     string eLevel=getLevelSymbol(level);
     
-    string msginfo_tem=timeStamp+eLevel;
-    memset(tmp, 0, sizeof(tmp));
-    
+    string msgStamp=timeStamp+eLevel;
+    LogMsg(msgStamp);
     va_list var_point;
     va_start(var_point, format);
     vsnprintf(tmp, sizeof(tmp)-1, format, var_point);
     va_end(var_point);
-    
     LogMsg(tmp);
     LogMsg("\n");
     
