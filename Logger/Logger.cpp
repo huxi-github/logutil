@@ -37,9 +37,9 @@ void Logger::LogMsgE(const char* format,...)
 	}
 
 	char tmp[1024] = {0};
-	tm *sysTime = NULL;
+    
 	time_t t = time(NULL);
-	sysTime = localtime(&t);
+	tm * sysTime = localtime(&t);
 	sprintf(tmp,"[Time: %02d-%02d-%02d %02d:%02d:%02d]  ",
 	    			sysTime->tm_year,
 	    			sysTime->tm_mon,
