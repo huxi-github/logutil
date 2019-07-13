@@ -7,8 +7,8 @@
 //
 
 #ifndef Logger4_hpp
-#define Logger4_hpp
-
+#define Logger4_hpp 
+//some changes in child
 #include <stdio.h>
 #include <string>
 using namespace std;
