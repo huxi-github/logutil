@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include "Logger4.h"
-
+//change in father
 int main(int argc, const char * argv[]) {
     
             Logger4::LogMsgE(LERROR,"a info msg");
