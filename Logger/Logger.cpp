@@ -6,7 +6,7 @@
 #include <string.h>
 
 //boost::mutex Logger::mut;
-
+//master changes
 Logger::Logger()
 {
 }
